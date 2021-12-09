@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "AUDIT")
-public class AuditVirement {
+public class AuditTransfert {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;

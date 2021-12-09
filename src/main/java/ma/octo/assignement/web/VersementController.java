@@ -9,38 +9,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import ma.octo.assignement.domain.Virement;
+import ma.octo.assignement.domain.Versement;
 import ma.octo.assignement.dto.ArgentTransfertDto;
-
 import ma.octo.assignement.exceptions.CompteNonExistantException;
 import ma.octo.assignement.exceptions.SoldeDisponibleInsuffisantException;
 import ma.octo.assignement.exceptions.TransactionException;
+import ma.octo.assignement.service.VersementService;
 
-import ma.octo.assignement.service.VirementService;
-
-@RestController(value = "/virements")
-public class VirementController implements Controller<Virement,ArgentTransfertDto>{
+@RestController(value = "/versements")
+public class VersementController implements Controller<Versement,ArgentTransfertDto>{
 	@Autowired
-	private VirementService virementService;
-	
+	private VersementService versementService;
 
 	
-    @GetMapping("lister_virements")
+    @GetMapping("lister_versements")
 	@Override
-	public List<Virement> loadAll() {
+	public List<Versement> loadAll() {
 		try {
-			return virementService.getAll();			
+			return versementService.getAll();			
 		}catch(Exception e) {
 			return null;
 		}
 	}
-    @PostMapping("/executerVirements")
+    @PostMapping("/executerVersements")
     @ResponseStatus(HttpStatus.CREATED)
 	@Override
 	public void store(ArgentTransfertDto dto) throws SoldeDisponibleInsuffisantException, CompteNonExistantException, TransactionException , Exception {
         
-        virementService.transferer(dto);
+        versementService.transferer( dto);
 		
     }
 

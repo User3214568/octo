@@ -1,8 +1,8 @@
 package ma.octo.assignement.service;
 
-import ma.octo.assignement.domain.AuditVirement;
+import ma.octo.assignement.domain.AuditTransfert;
 import ma.octo.assignement.domain.util.EventType;
-import ma.octo.assignement.repository.AuditVirementRepository;
+import ma.octo.assignement.repository.AuditTransfertRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +17,20 @@ public class AutiService {
     Logger LOGGER = LoggerFactory.getLogger(AutiService.class);
 
     @Autowired
-    private AuditVirementRepository auditVirementRepository;
-
+    private AuditTransfertRepository auditRepository;
+    
+   
     public void auditVirement(String message) {
-
-        LOGGER.info("Audit de l'événement {}", EventType.VIREMENT);
-
-        AuditVirement audit = new AuditVirement();
+    	audit(message , EventType.VIREMENT);
+    }
+    public void audit(String message,EventType event) {
+    	LOGGER.info("Audit de l'événement {}",event);
+    	AuditTransfert audit = new AuditTransfert();
         audit.setEventType(EventType.VIREMENT);
         audit.setMessage(message);
-        auditVirementRepository.save(audit);
+        auditRepository.save(audit);
     }
-
-
     public void auditVersement(String message) {
-
-        LOGGER.info("Audit de l'événement {}", EventType.VERSEMENT);
-
-        AuditVirement audit = new AuditVirement();
-        audit.setEventType(EventType.VERSEMENT);
-        audit.setMessage(message);
-        auditVirementRepository.save(audit);
+    	audit(message , EventType.VERSEMENT);
     }
 }

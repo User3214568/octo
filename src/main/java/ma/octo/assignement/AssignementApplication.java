@@ -63,11 +63,11 @@ public class AssignementApplication implements CommandLineRunner {
 		compteRepository.save(compte2);
 
 		Virement v = new Virement();
-		v.setMontantVirement(BigDecimal.TEN);
+		v.setMontantTransfer(BigDecimal.TEN);
 		v.setCompteBeneficiaire(compte2);
 		v.setCompteEmetteur(compte1);
 		v.setDateExecution(new Date());
-		v.setMotifVirement("Assignment 2021");
+		v.setMotifTransfert("Assignment 2021");
 
 		virementRepository.save(v);
 	}

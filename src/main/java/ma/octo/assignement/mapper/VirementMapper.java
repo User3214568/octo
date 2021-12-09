@@ -5,15 +5,15 @@ import ma.octo.assignement.dto.VirementDto;
 
 public class VirementMapper {
 
-    private static VirementDto virementDto;
 
     public static VirementDto map(Virement virement) {
-        virementDto = new VirementDto();
+        VirementDto virementDto = new VirementDto();
         virementDto.setNrCompteEmetteur(virement.getCompteEmetteur().getNrCompte());
         virementDto.setDate(virement.getDateExecution());
-        virementDto.setMotif(virement.getMotifVirement());
-
+        virementDto.setMotif(virement.getMotifTransfert());
+        virementDto.setMontantTransferer(virement.getMontantTransfer());
         return virementDto;
 
     }
+  
 }
